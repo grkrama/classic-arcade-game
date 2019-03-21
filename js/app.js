@@ -23,10 +23,11 @@ Enemy.prototype.update = function(dt) {
         this.speed = Math.floor(Math.random() * 100) + 200;
       }
 
-    // Check for collision between player and enemies
-    if (player.x < this.x + 60 && player.x + 37 > this.x && player.y < this.y + 25 && 30 + player.y > this.y) {
-        player.x = 200;
-        player.y = 300;
+    if (player.x < this.x + 60 &&
+        player.x + 37 > this.x &&
+        player.y < this.y + 25 &&
+        30 + player.y > this.y) {
+        player.playerReset();
     }
 
 };
@@ -55,6 +56,11 @@ Player.prototype.update = function (){
 
 Player.prototype.render = function (){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Player.prototype.playerReset = function() {
+    this.x = 200;
+    this.y = 300;
 };
 
 Player.prototype.handleInput = function (allowedKey){
